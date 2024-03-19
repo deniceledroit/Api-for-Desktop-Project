@@ -11,17 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('reference');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('streetAddress');
-            $table->string('city');
-            $table->string('postalCode');
-            $table->string('phone');
-            $table->foreignId('storage_id')->constrained('storages');
-            $table->rememberToken();
+            $table->string('description');
+            $table->foreignId('supplier_id')->constrained('suppliers');
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('products');
     }
 };
