@@ -14,7 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $user=Auth::user();
+        $userId=$user->id;
+        return Product::where("storage_id",$userId)->where("price",'!=',null)->get();
     }
 
     /**
@@ -30,15 +32,17 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $user=Auth::user();
+        $storageId=$user->storage_id;
+        return Product::create(array_merge($request->all(['reference','name','description','supplier_id']),['storage_id'=>$storageId]));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(int $id)
     {
-        //
+        return Product::find($id);
     }
 
     /**
@@ -52,16 +56,21 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, int $id)
     {
-        //
+        $product=Product::find($id);
+        $product->update($request->all());
+        return $product;
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(int $id)
     {
-        //
+        $product=Product::find($id);
+        $product->delete();
+        return response()->json("Success");
     }
 }

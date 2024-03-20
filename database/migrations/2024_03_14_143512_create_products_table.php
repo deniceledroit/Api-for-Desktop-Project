@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->foreignId('supplier_id')->constrained('suppliers');
+            $table->foreignId('storage_id')->constrained('storages');
+            $table->float('price')->nullable();
             $table->timestamps();
         });
     }

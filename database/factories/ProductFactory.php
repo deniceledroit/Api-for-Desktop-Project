@@ -20,7 +20,9 @@ class ProductFactory extends Factory
             'reference'=>'FR'.fake()->numberBetween(100000,999999),
             'name'=>fake()->words(5,true),
             'description'=>fake()->sentences(3,true),
-            'supplier_id'=>1
+            'supplier_id'=>1,
+            'storage_id'=>1,
+            'price'=>fake()->randomFloat(2,5,200)
         ];
     }
 }

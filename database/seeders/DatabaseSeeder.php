@@ -21,12 +21,14 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
         ]);
         Storage::factory(10)->create();
-        User::factory(10)->create();
 
         User::factory()->create([
-             'name' => 'Test User',
-             'email' => 'test@example.com',
-         ]);
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
+        User::factory(10)->create();
+
+
 
 
         Supplier::factory(10)->create();
