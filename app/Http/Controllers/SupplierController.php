@@ -13,7 +13,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        return Supplier::all();
     }
 
     /**
@@ -35,9 +35,9 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Supplier $supplier)
+    public function show(int $id)
     {
-        //
+        return Supplier::find($id);
     }
 
     /**

@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         $user=Auth::user();
         $userId=$user->id;
-        return Product::where("storage_id",$userId)->where("price",'!=',null)->get();
+        return Product::with("storage")->with("supplier")->where("storage_id",$userId)->where("price",'!=',null)->get();
     }
 
     /**
@@ -34,7 +34,7 @@ class ProductController extends Controller
     {
         $user=Auth::user();
         $storageId=$user->storage_id;
-        return Product::create(array_merge($request->all(['reference','name','description','supplier_id']),['storage_id'=>$storageId]));
+        return Product::create(array_merge($request->all(['reference','name','description','quantity','supplier_id','position']),['storage_id'=>$storageId]));
     }
 
     /**
@@ -42,7 +42,7 @@ class ProductController extends Controller
      */
     public function show(int $id)
     {
-        return Product::find($id);
+        return Product::with('storage')->with('supplier')->find($id);
     }
 
     /**
