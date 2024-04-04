@@ -47,11 +47,12 @@ class AuthController extends BaseController
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+            $success['role'] = $user->role_id;
 
             return $this->sendResponse($success);
         }
         else{
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised'],401);
         }
     }
 }

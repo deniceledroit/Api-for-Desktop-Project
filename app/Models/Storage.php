@@ -15,5 +15,11 @@ class Storage extends Model
     public function product(): HasMany{
         return $this->hasMany(Product::class);
     }
+    /**
+     * @return HasMany
+     */
+    public function user(): HasMany{
+        return $this->hasMany(User::class);
+    }
 
 }

@@ -34,6 +34,7 @@ class UserFactory extends Factory
             'postalCode' => fake()->postcode(),
             'phone' => fake()->phoneNumber(),
             'storage_id'=>1,
+            'role_id'=>fake()->numberBetween(1,2),
             'remember_token' => Str::random(10)
         ];
     }

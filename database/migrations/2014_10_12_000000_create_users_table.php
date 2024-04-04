@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('postalCode');
             $table->string('phone');
             $table->foreignId('storage_id')->constrained('storages');
+            $table->foreignId('role_id')->constrained('roles');
             $table->rememberToken();
             $table->timestamps();
         });
