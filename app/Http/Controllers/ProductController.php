@@ -15,8 +15,15 @@ class ProductController extends Controller
     public function index()
     {
         $user=Auth::user();
-        $userId=$user->id;
-        return Product::with("storage")->with("supplier")->where("storage_id",$userId)->where("price",'!=',null)->get();
+        $storageId=$user->storage_id;
+        $roleId=$user->role_id;
+        if($roleId==1){
+            return Product::with("storage")->with("supplier")->where("storage_id",$storageId)->where("price",'!=',0)->get();
+        }
+        else if($roleId==2){
+            return Product::with("storage")->with("supplier")->where("storage_id",$storageId)->get();
+        }
+        return abort(403);
     }
 
     /**

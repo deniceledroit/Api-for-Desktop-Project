@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StorageController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransitController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +31,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::delete('product/{id}',[ProductController::class,'destroy']);
     Route::get('suppliers',[SupplierController::class,'index']);
     Route::get('supplier/{id}',[SupplierController::class,'show']);
+    Route::get('transits',[TransitController::class,'index']);
+    Route::post('transit',[TransitController::class,'store']);
+    Route::get('storages',[StorageController::class,'allWithoutMine']);
 });

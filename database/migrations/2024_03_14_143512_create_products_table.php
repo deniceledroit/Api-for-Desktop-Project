@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('supplier_id')->constrained('suppliers');
             $table->foreignId('storage_id')->constrained('storages');
             $table->string('position');
-            $table->float('price')->nullable();
+            $table->string('price')->default(0);
             $table->timestamps();
         });
     }

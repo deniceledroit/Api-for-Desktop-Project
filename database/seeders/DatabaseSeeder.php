@@ -27,6 +27,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'role_id'=>1
         ]);
+        User::factory()->create([
+            'name' => 'Saler User',
+            'email' => 'saler@example.com',
+            'role_id'=>2
+        ]);
         User::factory(10)->create();
 
 
